@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.heresz163</groupId>
+    <artifactId>me-cloud-dependencies-parent</artifactId>
+    <version>1.0.1</version>
+    <packaging>pom</packaging>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>heresz</name>
+            <email>heresz@163.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:https://github.com/heresz163/me-cloud-dependencies-parent</connection>
+        <developerConnection>scm:https://github.com/heresz163/me-cloud-dependencies-parent</developerConnection>
+        <url>https://github.com/heresz163/me-cloud-dependencies-parent</url>
+        <tag>1.0.1</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>oss Snapshots Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>oss Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <me.common.version>1.0.1</me.common.version>
+        <spring-boot.version>2.4.3</spring-boot.version>
+        <spring-cloud.version>2020.0.1</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <security.version>2.2.4.RELEASE</security.version>
+        <security.oauth.version>2.3.6.RELEASE</security.oauth.version>
+        <fastjson.version>1.2.75</fastjson.version>
+        <swagger.core.version>1.5.24</swagger.core.version>
+        <git.commit.plugin>2.2.5</git.commit.plugin>
+        <spring.checkstyle.plugin>0.0.23</spring.checkstyle.plugin>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.me</groupId>
+                <artifactId>me-common-core</artifactId>
+                <version>${me.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.me</groupId>
+                <artifactId>me-common-datasource</artifactId>
+                <version>${me.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.me</groupId>
+                <artifactId>me-common-job</artifactId>
+                <version>${me.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.me</groupId>
+                <artifactId>me-common-log</artifactId>
+                <version>${me.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.me</groupId>
+                <artifactId>me-common-mybatis</artifactId>
+                <version>${me.common.version}</version>
+            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>com.me</groupId>-->
+            <!--                <artifactId>me-common-security</artifactId>-->
+            <!--                <version>${me.common.version}</version>-->
+            <!--            </dependency>-->
+            <dependency>
+                <groupId>com.me</groupId>
+                <artifactId>me-common-feign</artifactId>
+                <version>${me.common.version}</version>
+            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>com.me</groupId>-->
+            <!--                <artifactId>me-common-swagger</artifactId>-->
+            <!--                <version>${me.common.version}</version>-->
+            <!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.me</groupId>-->
+            <!--                <artifactId>me-common-test</artifactId>-->
+            <!--                <version>${me.common.version}</version>-->
+            <!--            </dependency>-->
+            <dependency>
+                <groupId>com.me</groupId>
+                <artifactId>me-admin-api</artifactId>
+                <version>${me.common.version}</version>
+            </dependency>
+            <!--稳定版本，替代spring security bom内置-->
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${security.oauth.version}</version>
+            </dependency>
+            <!--swagger 最新依赖内置版本-->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${swagger.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.core.version}</version>
+            </dependency>
+            <!--fastjson 版本-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!--web 模块-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+                <exclusions>
+                    <!--排除tomcat依赖-->
+                    <exclusion>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                        <groupId>org.springframework.boot</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- 必须配置 source-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--  必须配置 javadoc-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--  必须配置 sonatype-->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>sonatype-nexus-staging</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <!-- 必须配置  GPG-->
+            <!--        <plugin>-->
+            <!--            <groupId>org.apache.maven.plugins</groupId>-->
+            <!--            <artifactId>maven-gpg-plugin</artifactId>-->
+            <!--            <version>1.6</version>-->
+            <!--            <executions>-->
+            <!--                <execution>-->
+            <!--                    <id>sign-artifacts</id>-->
+            <!--                    <phase>verify</phase>-->
+            <!--                    <goals>-->
+            <!--                        <goal>sign</goal>-->
+            <!--                    </goals>-->
+            <!--                </execution>-->
+            <!--            </executions>-->
+            <!--        </plugin>-->
+        </plugins>
+    </build>
+</project>
